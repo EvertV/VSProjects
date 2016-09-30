@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4E2C27D9-BC59-4A7D-B072-2929B1E74B8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC5D8E1F-EDCC-459C-8E6A-1A26EBEC49AE}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "H2Fibonacci", "src\H2Fibonacci\H2Fibonacci.xproj", "{0A2C2099-5DD3-4471-946B-351C23C0EEC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A2C2099-5DD3-4471-946B-351C23C0EEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A2C2099-5DD3-4471-946B-351C23C0EEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A2C2099-5DD3-4471-946B-351C23C0EEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A2C2099-5DD3-4471-946B-351C23C0EEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A2C2099-5DD3-4471-946B-351C23C0EEC0} = {4E2C27D9-BC59-4A7D-B072-2929B1E74B8A}
+	EndGlobalSection
+EndGlobal
