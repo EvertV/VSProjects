@@ -1,52 +1,74 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Banking.Models
 {
     public class BankAccount
     {
-        #region Fields
+        #region Attributes
         private string _accountNumber;
-        public const decimal WithdrawCost = 0.25M;
+        private IList<Transaction> _transactions;
         #endregion
-        
-        #region Properties
-        public string AccountNumber
+
+        #region Constructors
+        public BankAccount(string accountNumber) : this(accountNumber, 0)
         {
-            get { return _accountNumber; }
-            private set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new ArgumentException("Accountnumber mag niet null zijn.");
-                _accountNumber = value;
-            }
         }
 
-        public decimal Balance { get; private set; }
-        #endregion
-        
-        #region Constructors
-        public BankAccount(string accountNumber)
+        public BankAccount(string accountNumber, decimal balance)
         {
             AccountNumber = accountNumber;
-            Balance = decimal.Zero;
-        }
-
-        public BankAccount(string accountNumber, decimal balance) : this(accountNumber)
-        {
             Balance = balance;
+            _transactions = new List<Transaction>();
         }
         #endregion
-        
+
         #region Methods
         public void Deposit(decimal amount)
         {
             Balance += amount;
+            _transactions.Add(new Transaction(amount, TransactionType.Deposit));
         }
 
         public void Withdraw(decimal amount)
         {
             Balance -= amount;
-        } 
+            _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
+        }
+
+        public IEnumerable<Transaction> GetTransactions(DateTime? from, DateTime? till)
+        {
+            if (from == null)
+                from = DateTime.MinValue;
+            if(till == null) 
+                till = DateTime.MaxValue;
+
+            ICollection<Transaction> transactions = new List<Transaction>();
+            foreach (Transaction t in _transactions)
+            {
+                if (t.DateOfTrans > from && t.DateOfTrans < till)
+                    transactions.Add(t);
+            }
+            return transactions;
+        }
+
         #endregion
+
+        #region Properties
+        public decimal Balance { get; private set; }
+
+        public string AccountNumber
+        {
+            get { return _accountNumber; }
+            set { _accountNumber = value; }
+        }
+
+        public int NumberOfTransactions
+        {
+            get { return _transactions.Count; }
+        }
+
+        #endregion
+
     }
 }

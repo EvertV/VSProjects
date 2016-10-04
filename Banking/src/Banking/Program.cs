@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Banking.Models;
 
 namespace Banking
@@ -7,18 +8,19 @@ namespace Banking
     {
         public static void Main(string[] args)
         {
-            BankAccount ba = new BankAccount("123-456789-11");
-            Console.WriteLine($"Rekening met nummer {ba.AccountNumber} werd aangemaakt.");
-            Console.WriteLine($"Balans = {ba.Balance}");
-            ba.Deposit(50.00M);
-            Console.WriteLine("Er werdt 50,00 EUR gestort.");
-            Console.WriteLine($"Balans = {ba.Balance}");
-            ba.Withdraw(23.95M);
-            Console.WriteLine("Er werdt 23,95 EUR afgehaald.");
-            Console.WriteLine($"Balans = {ba.Balance}");
+            BankAccount account = new BankAccount("123-4567890-02");
+            Console.WriteLine($"Balance: {account.Balance}");
+            account.Deposit(200);
+            Console.WriteLine($"Balance: {account.Balance}");
+            account.Withdraw(100);
+            Console.WriteLine($"Balance: {account.Balance}");
+            Console.WriteLine($"Number of transactions: {account.NumberOfTransactions}");
+            IEnumerable<Transaction> transactions = account.GetTransactions(DateTime.Now.AddDays(-2), null);
+            foreach (Transaction t in transactions)
+            {
+                Console.WriteLine($"Transaction on {t.DateOfTrans} : {t.Amount} euro - {t.TransactionType}");
+            }
             Console.ReadKey();
-
-
         }
     }
 }
