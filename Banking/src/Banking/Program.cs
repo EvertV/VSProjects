@@ -20,6 +20,14 @@ namespace Banking
             {
                 Console.WriteLine($"Transaction on {t.DateOfTrans} : {t.Amount} euro - {t.TransactionType}");
             }
+            BankAccount s = new SavingsAccount("123-456789-03", 0.01M);
+            Console.WriteLine($"Balance: {s.Balance}");
+            s.Deposit(2000);
+            Console.WriteLine($"Balance: {s.Balance}");
+            s.Withdraw(150);
+            Console.WriteLine($"Balance: {s.Balance}");
+            (s as SavingsAccount).AddInterest();
+            Console.WriteLine($"Balance: {s.Balance}");
             Console.ReadKey();
         }
     }
